@@ -16,16 +16,16 @@ var manoImg
 
 function preload() {
     backgroundImg = loadImage("bg.png");
-    manoImg = loadImage("mano.png")
-    pescadoImg = loadImage("mano.png")
-    botellaImg = loadImage("botella.png")
-    platanoImg = loadImage("platano.png")
-    lataImg = loadImage("lata.png")
+    manoImg = loadImage("mano.png");
+    pescadoImg = loadImage("mano.png");
+    botellaImg = loadImage("botella.png");
+    platanoImg = loadImage("platano.png");
+    lataImg = loadImage("lata.png");
 }
 
 function setup(){
-createCanvas(650,650)
-fish = createSprite(50,50,50,600)
+createCanvas(650,650);
+fish = createSprite(50,50);
 }
 
 function draw(){
