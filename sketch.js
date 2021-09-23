@@ -17,7 +17,7 @@ var manoImg
 function preload() {
     backgroundImg = loadImage("bg.png");
     manoImg = loadImage("mano.png");
-    pescadoImg = loadImage("mano.png");
+    pescadoImg = loadImage("pescado.png");
     botellaImg = loadImage("botella.png");
     platanoImg = loadImage("platano.png");
     lataImg = loadImage("lata.png");
@@ -26,6 +26,8 @@ function preload() {
 function setup(){
 createCanvas(650,650);
 fish = createSprite(50,50);
+fish.addImage(pescadoImg);
+//fish.scale = 0.02;
 }
 
 function draw(){
