@@ -13,6 +13,7 @@ var pescado;
 var pescadoImg;
 var mano;
 var manoImg
+var pisoI;
 
 function preload() {
     backgroundImg = loadImage("bg.png");
@@ -25,13 +26,24 @@ function preload() {
 
 function setup(){
 createCanvas(650,650);
-fish = createSprite(50,50);
+fish = createSprite(150,500);
 fish.addImage(pescadoImg);
-//fish.scale = 0.02;
+fish.scale = 0.7;
+fish2 = createSprite(450,450);
+fish2.addImage(pescadoImg);
+fish2.scale = 0.5;
+mano = createSprite(325,325);
+mano.addImage(manoImg);
+mano.scale = 0.3;
+pisoI = createSprite(325,380,650,10)
 }
 
 function draw(){
  background(backgroundImg);
+ edges = createEdgesSprite;
+mano.x = mouseX
+mano.y = mouseY
+
 
 drawSprites();
 }
