@@ -15,6 +15,8 @@ var mano;
 var manoImg
 var pisoI;
 
+gameState = 0;
+
 function preload() {
     backgroundImg = loadImage("bg.png");
     manoImg = loadImage("mano.png");
@@ -36,14 +38,63 @@ mano = createSprite(325,325);
 mano.addImage(manoImg);
 mano.scale = 0.3;
 pisoI = createSprite(325,380,650,10)
+pisoI.visible = false;
+
+fish.velocityX = -5;
+fish.velocityY = -5;
+fish2.velocityX = 4;
+fish2.velocityY = -4;
+
+fish.setCollider("circle",-25,0,40)
+fish2.setCollider("circle",-25,0,40)
 }
 
 function draw(){
  background(backgroundImg);
- edges = createEdgesSprite;
+ edges = createEdgeSprites();
 mano.x = mouseX
 mano.y = mouseY
 
 
+fish.bounceOff(pisoI);
+fish.bounceOff(edges);
+fish2.bounceOff(pisoI);
+fish2.bounceOff(edges);
+fish2.bounce(fish);
+fish.bounce(fish2);
+
+if(gameState === 0){
+text("press space to start",250,100)
+if(keyDown("space")){
+gameState = 1;
+}
+}
+if(gameState === 1){
+trash();
+if(mousePressedOver(object)){
+object.visible = false;
+}
+}
+
 drawSprites();
 }
+
+function trash(){
+if(frameCount %70 === 0){
+object = createSprite(random(50, 600),40, 10, 10);
+object.velocityY = 5;
+var rand = Math.round(random(1,3))
+switch(rand){
+case 1: object.addImage(lataImg);
+object.scale = 0.05;
+break;
+case 2: object.addImage(platanoImg);
+object.scale = 0.25;
+break;
+case 3: object.addImage(botellaImg);
+object.scale = 0.08;
+break;
+}
+}
+}
+
