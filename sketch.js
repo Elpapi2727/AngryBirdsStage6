@@ -14,6 +14,8 @@ var pescadoImg;
 var mano;
 var manoImg
 var pisoI;
+var objectGroup;
+var noti;
 
 gameState = 0;
 
@@ -37,6 +39,8 @@ fish2.scale = 0.5;
 mano = createSprite(325,325);
 mano.addImage(manoImg);
 mano.scale = 0.3;
+mano.debug = true;
+mano.setCollider("rectangle",0,0,90,200)
 pisoI = createSprite(325,380,650,10)
 pisoI.visible = false;
 
@@ -47,6 +51,10 @@ fish2.velocityY = -4;
 
 fish.setCollider("circle",-25,0,40)
 fish2.setCollider("circle",-25,0,40)
+objectGroup = new Group();
+
+
+
 }
 
 function draw(){
@@ -62,27 +70,44 @@ fish2.bounceOff(pisoI);
 fish2.bounceOff(edges);
 fish2.bounce(fish);
 fish.bounce(fish2);
-
+//Juego en estado de espera
 if(gameState === 0){
 text("press space to start",250,100)
-if(keyDown("space")){
-gameState = 1;
+
 }
-}
+
+if(keyDown("space") && gameState === 0){
+    gameState = 1;
+    }
+//Juego iniciado
 if(gameState === 1){
-trash();
-if(mousePressedOver(object)){
-object.visible = false;
+if(frameCount %70 === 0){
+    trash();
+    if(mousePressedOver(object)){
+        noti = "si "
+        object.destroy();
+    }
+    else{
+        noti = "no"
+    }
+
+   
 }
+
+textSize(20);
+text(noti,50,50)
 }
 
 drawSprites();
 }
 
 function trash(){
-if(frameCount %70 === 0){
+
 object = createSprite(random(50, 600),40, 10, 10);
-object.velocityY = 5;
+object.velocityY = 1;
+object.debug = true
+mano.depth = object.depth;
+mano.depth +=1;
 var rand = Math.round(random(1,3))
 switch(rand){
 case 1: object.addImage(lataImg);
@@ -94,7 +119,10 @@ break;
 case 3: object.addImage(botellaImg);
 object.scale = 0.08;
 break;
+default:
+    break;
 }
-}
+objectGroup.add(object);
+
 }
 
